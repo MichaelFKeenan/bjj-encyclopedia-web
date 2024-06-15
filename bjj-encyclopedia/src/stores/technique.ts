@@ -59,6 +59,10 @@ export default defineStore('Technique', {
       existingTechnique.coachName = technique.coachName;
       existingTechnique.tags = technique.tags;
       console.log('existingTechnique', existingTechnique);
+    },
+    deleteTechnique(id: number) {
+      //do this via api
+      this.techniques = this.techniques.filter(technique => technique.id !== id);
     }
   }
 })

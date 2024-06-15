@@ -22,13 +22,18 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import useTechniqueStore from '../../stores/technique'
+
+const store = useTechniqueStore();
+
 const props = defineProps(['technique'])
+
 const technique = props.technique;
 
 const isShowDetails = ref(false);
 
 function deleteItem(id: number) {
-  alert(`delete ${id}!`)
+  store.deleteTechnique(id);
 }
 
 function showDetails(value: boolean) {
