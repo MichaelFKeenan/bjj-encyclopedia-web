@@ -9,7 +9,7 @@
       <p>
         {{technique.tags}}
       </p>
-      <!-- <NuxtLink :to="`/editItem/${result.id}`"><button>Edit</button></NuxtLink> -->
+      <RouterLink :to="`/editTechnique/${technique.id}`">Edit</RouterLink>
       <button @click="deleteItem(technique.id)">Delete</button>
       <button @click="showDetails(true)" v-if="!isShowDetails">open</button>
       <button @click="showDetails(false)" v-if="isShowDetails">hide</button>

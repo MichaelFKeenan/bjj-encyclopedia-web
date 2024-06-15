@@ -7,6 +7,8 @@
       <input v-model="name">
       <p>Coach</p>
       <input v-model="coach">
+      <p>Description</p>
+      <input v-model="description">
       <p>Tags</p>
       <div v-for="(tag, id) in tags" :key="id">
         <input v-model="tags[id]" />
@@ -16,16 +18,17 @@
       </button>
       <button @click="create">Create</button>
     </div>
-    <div v-if="isShowDetails">
-      {{ result.description }}
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import useTechniqueStore from '../../stores/technique'
+const store = useTechniqueStore();
+
 const name = ref('');
 const coach = ref('');
+const description = ref('');
 const tags = ref(['']);
 
 function addTag() {
@@ -33,6 +36,6 @@ function addTag() {
 }
 
 function create() {
-  alert(`Create ${name.value}, ${coach.value}, !`);
+  store.addTechnique({name: name.value, coachName: coach.value, description: description.value, tags: tags.value})
 }
 </script>

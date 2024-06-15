@@ -20,9 +20,10 @@ const router = createRouter({
       component: () => import('../views/CreateTechniqueView.vue')
     },
     {
-      path: '/editTechnique',
+      path: '/editTechnique/:id',
       name: 'editTechnique',
-      component: () => import('../views/EditTechniqueView.vue')
+      component: () => import('../views/EditTechniqueView.vue'),
+      props: true
     }
   ]
 })

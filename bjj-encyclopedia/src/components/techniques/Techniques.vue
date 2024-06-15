@@ -2,7 +2,7 @@
 import TechniqueCard from './TechniqueCard.vue'
 import useTechniqueStore from '../../stores/technique'
 const store = useTechniqueStore();
-const techniques = store.techniques;
+const techniques = store.getAllTechniques;
 </script>
 
 <template>
