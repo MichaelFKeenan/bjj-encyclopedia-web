@@ -35,7 +35,7 @@ function addTag() {
   tags.value.push('');
 }
 
-function create() {
-  store.addTechnique({name: name.value, coachName: coach.value, description: description.value, tags: tags.value})
+async function create() {
+  await store.addTechnique({name: name.value, coach: coach.value, description: description.value, tags: tags.value})
 }
 </script>

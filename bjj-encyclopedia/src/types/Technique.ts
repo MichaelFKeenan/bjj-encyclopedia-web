@@ -1,16 +1,19 @@
+import type { UUID } from "crypto"
+
 interface BaseTechnique {
   name: string,
   description: string,
-  coachName: string,
+  coach: string,
   tags: string[]
 }
 
-interface NewTechnique extends BaseTechnique {
+export interface NewTechnique extends BaseTechnique {
   name: string,
   description: string,
-  coachName: string,
+  coach: string,
   tags: string[]
 }
-interface FullTechnique extends BaseTechnique {
-  id: number,
+export interface FullTechnique extends BaseTechnique {
+  id: UUID,
+  created: Date,
 }

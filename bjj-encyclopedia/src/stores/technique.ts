@@ -1,32 +1,15 @@
+import type { FullTechnique, NewTechnique } from '@/types/Technique'
+import type { UUID } from 'crypto'
 import { defineStore } from 'pinia'
 
 interface State {
   techniques: FullTechnique[]
 }
 
-let nextId = 3
-
-const defaultState: FullTechnique[] = [
-  {
-    id: 1,
-    name: 'anem 1',
-    description: 'description 1',
-    coachName: 'coachName 1',
-    tags: ['tag1', 'tag2']
-  },
-  {
-    id: 2,
-    name: 'anem 2',
-    description: 'description 2',
-    coachName: 'coachName 2',
-    tags: ['tag3', 'tag4']
-  }
-]
-
 export default defineStore('Technique', {
   state: (): State => {
     return {
-      techniques: defaultState
+      techniques: []
     }
   },
   getters: {
@@ -34,21 +17,38 @@ export default defineStore('Technique', {
     //how to hydrate?
     getAllTechniques: (state) => state.techniques,
     getTechnique: (state) => {
-      return (techniqueId: number) =>
+      return (techniqueId: UUID) =>
         state.techniques.find((technique) => technique.id === techniqueId)
     }
   },
   actions: {
-    addTechnique(technique: NewTechnique) {
-      //this should write to db via api
-      const simulatedCreate: FullTechnique = {
-        id: nextId++,
-        name: technique.name,
-        description: technique.description,
-        tags: technique.tags,
-        coachName: technique.coachName
-      };
-      this.techniques.push(simulatedCreate)
+    async fetchTechniques(){
+      try {
+        const response = await fetch('https://localhost:7181/Techniques');
+        if(response.status === 200) {
+          this.techniques = await response.json() as FullTechnique[];
+        }
+      } 
+      catch(e) { 
+        console.log(e);
+      }
+    },
+    async addTechnique(technique: NewTechnique) {
+      try {
+        const response = await fetch('https://localhost:7181/Techniques', {
+          method: "POST", 
+          body: JSON.stringify(technique),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        if(response.status === 200) {
+          console.log('good');
+        }
+      } 
+      catch(e) { 
+        console.log(e);
+      }
     },
     editTechnique(technique: FullTechnique) {
       //do this properly in api
@@ -56,11 +56,11 @@ export default defineStore('Technique', {
       if(!existingTechnique) return;
       existingTechnique.name = technique.name;
       existingTechnique.description = technique.description;
-      existingTechnique.coachName = technique.coachName;
+      existingTechnique.coach = technique.coach;
       existingTechnique.tags = technique.tags;
       console.log('existingTechnique', existingTechnique);
     },
-    deleteTechnique(id: number) {
+    deleteTechnique(id: UUID) {
       //do this via api
       this.techniques = this.techniques.filter(technique => technique.id !== id);
     }

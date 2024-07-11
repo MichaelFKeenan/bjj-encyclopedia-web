@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import TechniqueCard from './TechniqueCard.vue'
 import useTechniqueStore from '../../stores/technique'
+import { onMounted } from 'vue'
 const store = useTechniqueStore();
+
+onMounted(async () => {
+  await store.fetchTechniques();
+})
 </script>
 
 <template>

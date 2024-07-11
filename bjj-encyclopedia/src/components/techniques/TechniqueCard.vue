@@ -4,7 +4,7 @@
   <div>
     <div>
       <p>
-      {{ technique.name }} - {{ technique.coachName }}
+      {{ technique.name }} - {{ technique.coach }}
       </p>
       <p>
         {{technique.tags}}
