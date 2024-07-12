@@ -7,7 +7,7 @@
       <p>Name</p>
       <input v-model="technique.name">
       <p>Coach</p>
-      <input v-model="technique.coachName">
+      <input v-model="technique.coach">
       <p>Description</p>
       <input v-model="technique.description">
       <p>Tags</p>
@@ -35,8 +35,8 @@ function addTag() {
   technique.tags.push('');
 }
 
-function save() {
+async function save() {
   if(!technique) return;
-  store.editTechnique(technique);
+  await store.editTechnique(technique);
 }
 </script>
