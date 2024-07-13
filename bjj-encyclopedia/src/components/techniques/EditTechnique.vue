@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <p v-if="!technique">No technique with this id</p>
@@ -9,7 +7,7 @@
       <p>Coach</p>
       <input v-model="technique.coach">
       <p>Description</p>
-      <input v-model="technique.description">
+      <textarea v-model="technique.description"/>
       <p>Tags</p>
       <div v-for="(tag, id) in technique.tags" :key="id">
         <input v-model="technique.tags[id]" />

@@ -5,10 +5,9 @@
     <div>
       <p>Name</p>
       <input v-model="name">
-      <p>Coach</p>
-      <input v-model="coach">
       <p>Description</p>
       <textarea v-model="description"/>
+
       <p>Tags</p>
       <div v-for="(tag, id) in tags" :key="id">
         <input v-model="tags[id]" />
@@ -23,8 +22,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import useTechniqueStore from '../../stores/technique'
-const store = useTechniqueStore();
+import useConceptStore from '../../stores/concept'
+const store = useConceptStore();
 
 const name = ref('');
 const coach = ref('');
@@ -36,6 +35,6 @@ function addTag() {
 }
 
 async function create() {
-  await store.addTechnique({name: name.value, coach: coach.value, description: description.value, tags: tags.value})
+  await store.addConcept({name: name.value, description: description.value, tags: tags.value})
 }
 </script>

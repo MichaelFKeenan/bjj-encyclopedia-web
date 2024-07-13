@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EditTechnique from '../components/techniques/EditTechnique.vue'
+import EditConcept from '../../components/concepts/EditConcept.vue'
 
 const props = defineProps(['id'])
 
@@ -7,6 +7,6 @@ const props = defineProps(['id'])
 
 <template>
   <main>
-    <EditTechnique :id="props.id" />
+    <EditConcept :id="props.id" />
   </main>
 </template>

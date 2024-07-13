@@ -16,12 +16,22 @@ export default defineStore('Technique', {
     //this should read from db via api
     //how to hydrate?
     getAllTechniques: (state) => state.techniques,
-    getTechnique: (state) => {
-      return (techniqueId: UUID) =>
-        state.techniques.find((technique) => technique.id === techniqueId)
+    getTechnique: (state) => (techiqueId: string) => {
+      return state.techniques.find((technique) => technique.id === techiqueId)
     }
   },
   actions: {
+    async selectTechnique(){
+      try {
+        const response = await fetch('https://localhost:7181/Techniques');
+        if(response.status === 200) {
+          this.techniques = await response.json() as FullTechnique[];
+        }
+      }
+      catch(e) { 
+        console.log(e);
+      }
+    },
     async fetchTechniques(){
       try {
         const response = await fetch('https://localhost:7181/Techniques');

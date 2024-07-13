@@ -12,17 +12,39 @@ const router = createRouter({
     {
       path: '/techniques',
       name: 'techniques',
-      component: () => import('../views/TechniquesView.vue')
+      component: () => import('../views/technique/TechniquesView.vue')
     },
     {
       path: '/createTechnique',
       name: 'createTechnique',
-      component: () => import('../views/CreateTechniqueView.vue')
+      component: () => import('../views/technique/CreateTechniqueView.vue')
     },
     {
       path: '/editTechnique/:id',
       name: 'editTechnique',
-      component: () => import('../views/EditTechniqueView.vue'),
+      component: () => import('../views/technique/EditTechniqueView.vue'),
+      props: true
+    },
+    {
+      path: '/concepts',
+      name: 'concepts',
+      component: () => import('../views/concept/ConceptsView.vue')
+    },
+    {
+      path: '/createConcept',
+      name: 'createConcept',
+      component: () => import('../views/concept/CreateConceptView.vue')
+    },
+    {
+      path: '/editConcept/:id',
+      name: 'editConcept',
+      component: () => import('../views/concept/EditConceptView.vue'),
+      props: true
+    },
+    {
+      path: '/createAttempt/:techniqueId',
+      name: 'createAttempt',
+      component: () => import('../views/attempt/CreateAttemptView.vue'),
       props: true
     }
   ]

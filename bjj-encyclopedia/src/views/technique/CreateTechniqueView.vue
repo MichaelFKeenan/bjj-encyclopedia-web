@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CreateTechnique from '../components/techniques/CreateTechnique.vue'
+import CreateTechnique from '../../components/techniques/CreateTechnique.vue'
 </script>
 
 <template>
