@@ -2,7 +2,7 @@
 import ConceptCard from './ConceptCard.vue'
 import useConceptStore from '../../stores/concept'
 import { onMounted } from 'vue'
-import { deleteItemRequest } from '../../types/deleteItemRequest'
+import type { deleteItemRequest } from '../../types/deleteItemRequest'
 const store = useConceptStore();
 
 onMounted(async () => {

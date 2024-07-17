@@ -2,7 +2,7 @@
 import TechniqueCard from './TechniqueCard.vue'
 import useTechniqueStore from '../../stores/technique'
 import { onMounted } from 'vue'
-import { deleteItemRequest } from '../../types/deleteItemRequest'
+import type { deleteItemRequest } from '../../types/deleteItemRequest'
 const store = useTechniqueStore();
 
 onMounted(async () => {

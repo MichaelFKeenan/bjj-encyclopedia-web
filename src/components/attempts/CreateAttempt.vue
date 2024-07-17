@@ -3,7 +3,7 @@
     <div v-if="technique">
       <h3>{{technique.name}}</h3>
       <p>Success?</p>
-      <input type="checkbox" v-model="isSuccessful" />
+      <input type="checkbox" v-model="isSuccessfull" />
       <p>Notes</p>
       <textarea v-model="notes"/>
       <button @click="save">Save</button>
@@ -24,12 +24,13 @@ const props = defineProps(['techniqueId']);
 
 const technique = techniqueStore.getTechnique(props.techniqueId);
 
-const isSuccessful = ref(false);
+const isSuccessfull = ref(false);
 const notes = ref('');
 
 async function save() {
+  if(!technique) return;
   if(!technique.attempts) technique.attempts = [];
-  technique.attempts.push({isSuccessful: isSuccessful.value, notes: notes.value, created: new Date().toString()})
+  technique.attempts.push({isSuccessfull: isSuccessfull.value, notes: notes.value, created: new Date()})
   await techniqueStore.editTechnique(technique);
 }
 

@@ -1,6 +1,5 @@
 import { apiPath } from '@/api'
 import type { FullTechnique, NewTechnique } from '@/types/Technique'
-import type { UUID } from 'crypto'
 import { defineStore } from 'pinia'
 
 interface State {
@@ -17,7 +16,7 @@ export default defineStore('Technique', {
     //this should read from db via api
     //how to hydrate?
     getAllTechniques: (state) => state.techniques,
-    getTechnique: (state) => (techiqueId: string) => {
+    getTechnique: (state) => (techiqueId: string): FullTechnique | undefined => {
       return state.techniques.find((technique) => technique.id === techiqueId)
     }
   },
@@ -78,7 +77,7 @@ export default defineStore('Technique', {
         console.log(e);
       }
     },
-    async deleteTechnique(id: UUID, created: string) {
+    async deleteTechnique(id: string, created: string) {
       try {
         const response = await fetch(`${apiPath}/Techniques/${id}/${encodeURIComponent(created)}`, {
           method: "DELETE",

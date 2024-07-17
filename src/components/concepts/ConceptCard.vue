@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import useConceptStore from '../../stores/concept'
-import { deleteItemRequest } from '../../types/deleteItemRequest'
+import type { deleteItemRequest } from '../../types/deleteItemRequest'
 
 const store = useConceptStore();
 

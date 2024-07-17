@@ -1,6 +1,5 @@
 import { apiPath } from '@/api'
-import type { FullConcept, NewConcept } from '@/types/Concept'
-import type { UUID } from 'crypto'
+import type { FullConcept, NewConcept } from '@/types/Concepts'
 import { defineStore } from 'pinia'
 
 interface State {
@@ -18,7 +17,7 @@ export default defineStore('Concept', {
     //how to hydrate?
     getAllConcepts: (state) => state.concepts,
     getConcept: (state) => {
-      return (conceptId: UUID) =>
+      return (conceptId: string) =>
         state.concepts.find((concept) => concept.id === conceptId)
     }
   },
@@ -68,7 +67,7 @@ export default defineStore('Concept', {
         console.log(e);
       }
     },
-    async deleteConcept(id: UUID, created: string) {
+    async deleteConcept(id: string, created: string) {
       try {
         const response = await fetch(`${apiPath}/Concepts/${id}/${encodeURIComponent(created)}`, {
           method: "DELETE",

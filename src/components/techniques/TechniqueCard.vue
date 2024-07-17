@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import useTechniqueStore from '../../stores/technique'
-import { deleteItemRequest } from '../../types/deleteItemRequest'
+import type { deleteItemRequest } from '../../types/deleteItemRequest'
 
 const store = useTechniqueStore()
 
