@@ -1,3 +1,4 @@
+import { apiPath } from '@/api'
 import type { FullTechnique, NewTechnique } from '@/types/Technique'
 import type { UUID } from 'crypto'
 import { defineStore } from 'pinia'
@@ -23,7 +24,7 @@ export default defineStore('Technique', {
   actions: {
     async selectTechnique(){
       try {
-        const response = await fetch('https://localhost:7181/Techniques');
+        const response = await fetch(`${apiPath}/Techniques`);
         if(response.status === 200) {
           this.techniques = await response.json() as FullTechnique[];
         }
@@ -34,7 +35,7 @@ export default defineStore('Technique', {
     },
     async fetchTechniques(){
       try {
-        const response = await fetch('https://localhost:7181/Techniques');
+        const response = await fetch(`${apiPath}/Techniques`);
         if(response.status === 200) {
           this.techniques = await response.json() as FullTechnique[];
         }
@@ -45,7 +46,7 @@ export default defineStore('Technique', {
     },
     async addTechnique(technique: NewTechnique) {
       try {
-        const response = await fetch('https://localhost:7181/Techniques', {
+        const response = await fetch(`${apiPath}/Techniques`, {
           method: "POST", 
           body: JSON.stringify(technique),
           headers: {
@@ -62,7 +63,7 @@ export default defineStore('Technique', {
     },
     async editTechnique(technique: FullTechnique) {
       try {
-        const response = await fetch('https://localhost:7181/Techniques', {
+        const response = await fetch(`${apiPath}/Techniques`, {
           method: "PUT", 
           body: JSON.stringify(technique),
           headers: {
@@ -79,7 +80,7 @@ export default defineStore('Technique', {
     },
     async deleteTechnique(id: UUID, created: string) {
       try {
-        const response = await fetch(`https://localhost:7181/Techniques/${id}/${encodeURIComponent(created)}`, {
+        const response = await fetch(`${apiPath}/Techniques/${id}/${encodeURIComponent(created)}`, {
           method: "DELETE",
         });
         if(response.status === 200) {

@@ -1,3 +1,4 @@
+import { apiPath } from '@/api'
 import type { FullConcept, NewConcept } from '@/types/Concept'
 import type { UUID } from 'crypto'
 import { defineStore } from 'pinia'
@@ -24,7 +25,7 @@ export default defineStore('Concept', {
   actions: {
     async fetchConcepts(){
       try {
-        const response = await fetch('https://localhost:7181/Concepts');
+        const response = await fetch(`${apiPath}/Concepts`);
         if(response.status === 200) {
           this.concepts = await response.json() as FullConcept[];
         }
@@ -35,7 +36,7 @@ export default defineStore('Concept', {
     },
     async addConcept(concept: NewConcept) {
       try {
-        const response = await fetch('https://localhost:7181/Concepts', {
+        const response = await fetch(`${apiPath}/Concepts`, {
           method: "POST", 
           body: JSON.stringify(concept),
           headers: {
@@ -52,7 +53,7 @@ export default defineStore('Concept', {
     },
     async editConcept(concept: FullConcept) {
       try {
-        const response = await fetch('https://localhost:7181/Concepts', {
+        const response = await fetch(`${apiPath}/Concepts`, {
           method: "PUT", 
           body: JSON.stringify(concept),
           headers: {
@@ -69,7 +70,7 @@ export default defineStore('Concept', {
     },
     async deleteConcept(id: UUID, created: string) {
       try {
-        const response = await fetch(`https://localhost:7181/Concepts/${id}/${encodeURIComponent(created)}`, {
+        const response = await fetch(`${apiPath}/Concepts/${id}/${encodeURIComponent(created)}`, {
           method: "DELETE",
         });
         if(response.status === 200) {
